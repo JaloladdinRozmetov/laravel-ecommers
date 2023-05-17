@@ -15,5 +15,8 @@ class DatabaseSeeder extends Seeder
     {
           \App\Models\User::factory(10)->create();
           $this->call(UserSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
+        $this->command->info('Таблица товаров загружена данными!');
     }
 }
