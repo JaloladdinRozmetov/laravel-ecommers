@@ -16,9 +16,17 @@ class CategoriesTableSeeder extends Seeder
     {
         Category::create([
             'name'          =>  'Main',
-            'parent_id'     =>  1,
-        ]);
+            'parent_id'     =>  0,
+        ],
+            [
+                'name'          =>  'Catalog',
+                'parent_id'     =>  0,
+            ],
+            [
+                'name'          =>  'category',
+                'parent_id'     =>  0,
+            ]);
 
-        Category::factory(10);
+       Category::factory()->count(10)->create();
     }
 }

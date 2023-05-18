@@ -15,7 +15,7 @@ class ProductFactory extends Factory
     {
         $name = $this->faker->realText(rand(40, 50));
         return [
-            'category_id' => rand(1, 4),
+            'category_id' => rand(1, 2),
             'product_name' => $name,
             'price' => rand(1000, 2000),
         ];

@@ -12,10 +12,22 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name', 'category_id','price'
+        'product_name', 'category_id','price','description','image'
     ];
 
-    public function getCategory() {
-        return Category::find($this->category_id);
+    /**
+     * Связь «товар принадлежит» таблицы `products` с таблицей `categories`
+     */
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Связь «многие ко многим» таблицы `products` с таблицей `baskets`
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function baskets() {
+        return $this->belongsToMany(Basket::class)->withPivot('quantity');
     }
 }
