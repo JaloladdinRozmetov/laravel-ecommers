@@ -144,13 +144,94 @@ class ProductTableSeeder extends Seeder
                 "category_id" => 4,
                 "image" => "images/products/Cd5ATTgXFH319ir2kdFRLouidctoUB_w.jpg"
             ]);
+
         Product::query()->create(
             [
-                "product_name" => "Задняя фара GM Оптра для Ласетти/Жентра Красный",
+                "product_name" => "Руль Mercedes Tiptronic",
                 "price" => 3999,
-                "description" => "Задняя фара GM Оптра для Ласетти/Жентра Красный",
-                "category_id" => 4,
-                "image" => "images/products/TxjRWmSm6GaSecWZnmbdk3tXHohux2FO.jpg"
+                "description" => "",
+                "category_id" => 6,
+                "image" => "images/products/rul-mercedes-tiptronic-anatomiya-1-23850-0.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный руль Mercedes Baujun",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 6,
+                "image" => "images/products/G3MIDJWts3n7CLCUmSVLVQctS8Mhc5R7DBOT9UO9D2jPsFRFjdA2c73oBSj9.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный мульти руль в cтиле Porshce new для",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 6,
+                "image" => "images/products/JvrMwT972lnsZauzU2BVz6yALiQxaQbNfIR1niN69VntZQMGrlFNfYAfE4Uf.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный мульти руль от Chevrolet в cтиле",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 6,
+                "image" => "images/products/NdVCCmCrL0qEX7JCiV9ZoXJh1neyFnShoo3EuHH20M4wXmmSRcNeaB9ewWnN.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный комплект Lenovo HR17 Full HD, GM 6D",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 7,
+                "image" => "images/products/bFdWQ6Ra4EenFcsAscqBMhPBzBDUd54FZWgGCb5N56h3l7RhYAvfMzbUHsF1.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный комплект Lenovo HR17 Full HD,",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 7,
+                "image" => "images/products/2OY2rLvTvNhBTGiSfpG45W4FmAy8hAnLQgskEuyU8FpQO90uGxkaW9w9h3HI.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный коврик Evakor с бортиками",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 7,
+                "image" => "images/products/tEUtGN5y3flthOKUpPS1KWcSSwxVo7AKIF2fl1dwK2mD4KnG4qhmtiDDXXug.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Пусковое Устройство REMAX Jump Starter RPP-511",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 8,
+                "image" => "images/products/TcqMtawfRzhJnT38K4muBUNA1e74B6pgju8nnWLqLpCg5gbfPWSKjCZ75ge3RWQt.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автономное пусковое устройство Baseus",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 8,
+                "image" => "images/products/RGsQAtQy3771FvBC8vBj6sonY9cS1kjWlGnpBlAdwjZi2simJ9tHPm2QbmzV6jSF.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Автомобильный держатель Borofone BH202 Seaside c беспроводной зарядкой",
+                "price" => 3999,
+                "description" => "",
+                "category_id" => 8,
+                "image" => "images/products/O8gSKS05tEbYi3uj2Te8ypjyJiKVM1tE1PndsTjOgPtuiZah6D3gSqxNbyiLzMPr.jpg"
+            ]);
+        Product::query()->create(
+            [
+                "product_name" => "Ароматизатор для авто Mr&Mrs Fragrance NikiVelvet",
+                "price" => 55000,
+                "description" => "",
+                "category_id" => 8,
+                "image" => "images/products/MV9JFppeSgInN2z7SU4u0zpW2milX7qBXRJANEKlcldZGeylySZrYC4hJuN6.jpg"
             ]);
     }
 }

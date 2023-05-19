@@ -33,7 +33,26 @@ class CategoriesTableSeeder extends Seeder
             [
                 'name'          =>  ' Фары ',
                 'parent_id'     =>  1,
-            ],
-        );
+            ],);
+        Category::create(
+            [
+                'name'          =>  'Автотовары',
+                'parent_id'     =>  0,
+            ],);
+        Category::create(
+            [
+                'name'          =>  'Руль для авто',
+                'parent_id'     =>  5,
+            ],);
+        Category::create(
+            [
+                'name'          =>  'Автомобильные коврики',
+                'parent_id'     =>  5,
+            ],);
+        Category::create(
+            [
+                'name'          =>  'Автоаксессуары',
+                'parent_id'     =>  5,
+            ],);
     }
 }
