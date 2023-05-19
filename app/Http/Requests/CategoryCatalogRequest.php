@@ -7,7 +7,6 @@ use App\Rules\CategoryParent;
 class CategoryCatalogRequest extends CatalogRequest {
 
     /**
-     * С какой сущностью сейчас работаем (категория каталога)
      * @var array
      */
     protected $entity = [
@@ -16,8 +15,6 @@ class CategoryCatalogRequest extends CatalogRequest {
     ];
 
     /**
-     * Determine if the user is authorized to make this request.
-     *
      * @return bool
      */
     public function authorize() {
@@ -25,8 +22,6 @@ class CategoryCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules() {
@@ -34,8 +29,7 @@ class CategoryCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Объединяет дефолтные правила и правила, специфичные для категории
-     * для проверки данных при добавлении новой категории
+     * @return array[]
      */
     protected function createItem() {
         $rules = [
@@ -48,8 +42,7 @@ class CategoryCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Объединяет дефолтные правила и правила, специфичные для категории
-     * для проверки данных при обновлении существующей категории
+     * @return array[]
      */
     protected function updateItem() {
         // получаем объект модели категории из маршрута: admin/category/{category}

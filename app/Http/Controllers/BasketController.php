@@ -16,7 +16,7 @@ class BasketController extends Controller {
     }
 
     /**
-     * Показывает корзину покупателя
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
         $products = $this->basket->products;
@@ -26,50 +26,45 @@ class BasketController extends Controller {
 
 
     /**
-     * Добавляет товар с идентификатором $id в корзину
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function add(Request $request, $id) {
         $basket_id = $request->cookie('basket_id');
         $quantity = $request->input('quantity') ?? 1;
         if (empty($basket_id)) {
-            // если корзина еще не существует — создаем объект
             $basket = Basket::create();
-            // получаем идентификатор, чтобы записать в cookie
             $basket_id = $basket->id;
         } else {
-            // корзина уже существует, получаем объект корзины
             $basket = Basket::findOrFail($basket_id);
-            // обновляем поле `updated_at` таблицы `baskets`
             $basket->touch();
         }
         if ($basket->products->contains($id)) {
-            // если такой товар есть в корзине — изменяем кол-во
             $pivotRow = $basket->products()->where('product_id', $id)->first()->pivot;
             $quantity = $pivotRow->quantity + $quantity;
             $pivotRow->update(['quantity' => $quantity]);
         } else {
-            // если такого товара нет в корзине — добавляем его
             $basket->products()->attach($id, ['quantity' => $quantity]);
         }
-        // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
         return back()->withCookie(cookie('basket_id', $basket_id, 525600));
     }
 
     /**
-     * Увеличивает кол-во товара $id в корзине на единицу
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function plus($id) {
         $this->basket->increase($id);
-        // выполняем редирект обратно на страницу корзины
         return redirect()->route('basket.index');
     }
 
     /**
-     * Уменьшает кол-во товара $id в корзине на единицу
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function minus($id) {
         $this->basket->decrease($id);
-        // выполняем редирект обратно на страницу корзины
         return redirect()->route('basket.index');
     }
 
@@ -78,16 +73,14 @@ class BasketController extends Controller {
      */
     public function remove($id) {
         $this->basket->remove($id);
-        // выполняем редирект обратно на страницу корзины
         return redirect()->route('basket.index');
     }
 
     /**
-     * Полностью очищает содержимое корзины покупателя
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function clear() {
         $this->basket->delete();
-        // выполняем редирект обратно на страницу корзины
         return redirect()->route('basket.index');
     }
 }

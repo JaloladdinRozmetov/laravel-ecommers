@@ -1,21 +1,40 @@
-
+# Laravel E-Commerce
 
 ## Инструкция для исползования
 
-- git clone https://github.com/JaloladdinRozmetov/magazine-test.git 
-- cd magazine-test
-- composer install
-- docker-compose build
-- docker-compose up -d
-- docker ps
-- docker exec -it magazine-test-fpm-1(Называния php container) bash
-- (проверти находитесли вы на правилном директори вы должны быт в /var/www/laravel-docker если нет зайдте туда так) cd /var/www/laravel-docker
-- cp .env.example .env
-- php artisan key:generate
-- php artisan migrate
-- php artisan DB:seed
+### Клонирование проекта и копирование env
 
-с этим будет готова теперь можете зайти в бровзер в эту ссылку http://localhost:8098/
-Чтобы зайти в админку переходите в login страницу и введите:
-login:admin@gmail.com
+```bash
+$ git clone https://github.com/JaloladdinRozmetov/magazine-test.git
+$ cd laravel-ecommers
+$ cp .env.example .env
+```
+
+### Запуск проекта через докер
+```bash
+$ docker-compose up -d
+```
+
+### Запускаем установку пакетов php (композер)
+```bash
+$ docker exec -it php.ecom composer install
+```
+
+### Генерация ключа и запуск миграции для Laravel
+```bash
+$ docker exec -it php.ecom php artisan key:generate
+$ docker exec -it php.ecom php artisan migrate
+```
+
+### Чтобы заполнить БД заранее прописанными данными можно использовать seed
+```bash
+$ docker exec -it php.ecom php artisan DB:seed
+```
+
+#### Проект
+Проект: http://localhost:8098/
+
+#### Админка
+Админ: http://localhost:8098/user/login \
+login:admin@gmail.com \
 parol:123456

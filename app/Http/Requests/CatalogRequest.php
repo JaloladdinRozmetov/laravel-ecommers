@@ -8,7 +8,6 @@ use Illuminate\Foundation\Http\FormRequest;
 abstract class CatalogRequest extends FormRequest {
 
     /**
-     * С какой сущностью сейчас работаем: категория, бренд, товар
      * @var array
      */
     protected $entity = [];
@@ -39,8 +38,7 @@ abstract class CatalogRequest extends FormRequest {
     }
 
     /**
-     * Задает дефолтные правила для проверки данных при добавлении
-     * категории, бренда или товара
+     * @return array[]
      */
     protected function createItem() {
         return [
@@ -61,8 +59,7 @@ abstract class CatalogRequest extends FormRequest {
     }
 
     /**
-     * Задает дефолтные правила для проверки данных при обновлении
-     * категории, бренда или товара
+     * @return array[]
      */
     protected function updateItem() {
         $model = $this->route($this->entity['name']);
@@ -75,8 +72,7 @@ abstract class CatalogRequest extends FormRequest {
     }
 
     /**
-     * Задает дефолтные правила для проверки данных при обновлении
-     * категории, бренда или товара
+     * @return array[]
      */
     protected function updateCategory() {
         $model = $this->route($this->entity['name']);

@@ -11,8 +11,6 @@ class ProductController extends Controller {
 
 
     /**
-     * Показывает список всех товаров
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
@@ -21,8 +19,6 @@ class ProductController extends Controller {
     }
 
     /**
-     * Показывает товары категории
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function category(Category $category) {
@@ -41,8 +37,6 @@ class ProductController extends Controller {
     }
 
     /**
-     * Сохраняет новый товар в базу данных
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -68,8 +62,6 @@ class ProductController extends Controller {
     }
 
     /**
-     * Показывает страницу товара
-     *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -78,8 +70,6 @@ class ProductController extends Controller {
     }
 
     /**
-     * Показывает форму для редактирования товара
-     *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
@@ -91,8 +81,6 @@ class ProductController extends Controller {
     }
 
     /**
-     * Обновляет товар каталога в базе данных
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\RedirectResponse

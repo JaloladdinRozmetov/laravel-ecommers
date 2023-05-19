@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 class ProductCatalogRequest extends CatalogRequest {
 
     /**
-     * С какой сущностью сейчас работаем (товар каталога)
      * @var array
      */
     protected $entity = [
@@ -14,8 +13,6 @@ class ProductCatalogRequest extends CatalogRequest {
     ];
 
     /**
-     * Determine if the user is authorized to make this request.
-     *
      * @return bool
      */
     public function authorize() {
@@ -23,8 +20,6 @@ class ProductCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
      * @return array
      */
     public function rules() {
@@ -32,8 +27,7 @@ class ProductCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Объединяет дефолтные правила и правила, специфичные для товара
-     * для проверки данных при добавлении нового товара
+     * @return array[]
      */
     protected function createItem() {
         $rules = [
@@ -52,8 +46,7 @@ class ProductCatalogRequest extends CatalogRequest {
     }
 
     /**
-     * Объединяет дефолтные правила и правила, специфичные для товара
-     * для проверки данных при обновлении существующего товара
+     * @return array[]
      */
     protected function updateItem() {
         $rules = [

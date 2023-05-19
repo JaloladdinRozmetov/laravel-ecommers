@@ -18,8 +18,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Показывает форму для создания категории
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
     public function create() {
@@ -29,8 +27,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Сохраняет новую категорию в базу данных
-     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -43,8 +39,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Показывает страницу категории
-     *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -53,8 +47,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Показывает форму для редактирования категории
-     *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -65,8 +57,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Обновляет категорию каталога
-     *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\RedirectResponse
@@ -80,8 +70,6 @@ class CategoryController extends Controller {
     }
 
     /**
-     * Удаляет категорию каталога
-     *
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\RedirectResponse
      */
