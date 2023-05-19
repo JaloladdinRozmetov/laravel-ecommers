@@ -12,8 +12,9 @@
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
           crossorigin="anonymous"/>
     <link rel="stylesheet" href="{{ asset('css/site.css') }}">
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/site.js') }}"></script>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body>
 <div class="container">
@@ -43,18 +44,21 @@
                         <li class="nav-item" id="top-basket">
                             <a class="nav-link"
                                href="{{ route('basket.index') }}">
-                                Корзина
+                                Корзина ({{\App\Models\Basket::getCount()}})
                             </a>
                         </li>
-                    <li class="nav-item">
-                        <a onclick="document.getElementById('logout-form').submit(); return false"
-                           href="{{ route('user.logout') }}" class="nav-link">Выйти</a>
-                    </li>
-                    @if(auth()->user()->admin === 1)
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">Админка</a>
-                        </li>
+                        @if(auth()->user()->admin === 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.index') }}">Админка</a>
+                            </li>
                         @endif
+                        <li class="nav-item">
+                            <a onclick="document.getElementById('logout-form').submit(); return false"
+                               href="{{ route('user.logout') }}" class="nav-link">Выйти</a>
+                        </li>
+                        <li class="nav-item">
+                            <p class="nav-link"> <i class="fas fa-user"></i> ({{auth()->user()->name}})</p>
+                        </li>
                  @endauth
             </ul>
             <form id="logout-form" action="{{ route('user.logout') }}" method="post"
@@ -64,8 +68,34 @@
         </div>
     </nav>
 
+
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+            <div id="catalog-sidebar">
+                <ul>
+                    @foreach(\App\Models\Category::where('parent_id',0)->get() as $item)
+                        <li>
+                            <a href="{{ route('catalog.products', ['category_id' => $item->id]) }}">{{ $item->name }}</a>
+                            @isset($item->children)
+                                <span class="badge badge-dark">
+                    <i class="fa fa-plus"></i>
+                </span>
+                                <ul>
+                                    @foreach($item->children as $child)
+                                        <li>
+                                            <a href="{{ route('catalog.products', ['category_id' => $child->id]) }}">
+                                                {{ $child->name }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endisset
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
             @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible mt-0" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Закрыть">
@@ -92,5 +122,24 @@
         </div>
     </div>
 </div>
+<script>
+    jQuery(document).ready(function($) {
+        $('#catalog-sidebar > ul ul').hide();
+        $('#catalog-sidebar .badge').on('click', function () {
+            var $badge = $(this);
+            var closed = $badge.siblings('ul') && !$badge.siblings('ul').is(':visible');
+
+            if (closed) {
+                $badge.siblings('ul').slideDown('normal', function () {
+                    $badge.children('i').removeClass('fa-plus').addClass('fa-minus');
+                });
+            } else {
+                $badge.siblings('ul').slideUp('normal', function () {
+                    $badge.children('i').removeClass('fa-minus').addClass('fa-plus');
+                });
+            }
+        });
+    });
+</script>
 </body>
 </html>

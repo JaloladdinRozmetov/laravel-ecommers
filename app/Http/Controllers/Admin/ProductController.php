@@ -16,7 +16,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index() {
-        $products = Product::paginate(10);
+        $products = Product::query()->get();
         return view('admin.product.index', compact('products'));
     }
 
@@ -26,7 +26,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function category(Category $category) {
-        $products = $category->products()->paginate(5);
+        $products = $category->products()->get();
         return view('admin.product.category', compact('category', 'products'));
     }
 

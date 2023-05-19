@@ -18,7 +18,7 @@
                             @endif
                         </div>
                         <div class="col-md-6">
-                            <p>Цена: {{ number_format($product->price, 2, '.', '') }}</p>
+                            <p>Цена: {{ number_format($product->price, 2, '.', '') }} руб</p>
                             <!-- Форма для добавления товара в корзину -->
                             <form action="{{ route('basket.add', ['id' => $product->id]) }}"
                                   method="post" class="form-inline add-to-basket">

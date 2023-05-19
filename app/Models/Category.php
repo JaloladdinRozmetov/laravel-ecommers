@@ -38,7 +38,6 @@ class Category extends Model
     public function children() {
         return $this->hasMany(Category::class, 'parent_id');
     }
-
     /**
      * Проверяет, что переданный идентификатор id может быть родителем
      * этой категории; что категорию не пытаются поместить внутрь себя

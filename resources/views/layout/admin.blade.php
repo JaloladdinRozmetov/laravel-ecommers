@@ -38,6 +38,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.product.index') }}">Товары</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('index') }}">В сайт</a>
+                </li>
 
             </ul>
 
@@ -46,6 +49,9 @@
                 <li class="nav-item">
                     <a onclick="document.getElementById('logout-form').submit(); return false"
                        href="{{ route('user.logout') }}" class="nav-link">Выйти</a>
+                </li>
+                <li class="nav-item">
+                    <p class="nav-link"><i class="fas fa-user"></i>  ({{auth()->user()->name}})</p>
                 </li>
             </ul>
             <form id="logout-form" action="{{ route('user.logout') }}" method="post"

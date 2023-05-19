@@ -24,47 +24,35 @@ class BasketController extends Controller {
         return view('basket.index', compact('products', 'amount'));
     }
 
-    /**
-     * Форма оформления заказа
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function checkout(Request $request) {
-        $profile = null;
-        $profiles = null;
-        if (auth()->check()) { // если пользователь аутентифицирован
-            $user = auth()->user();
-            // ...и у него есть профили для оформления
-            $profiles = $user->profiles;
-            // ...и был запрошен профиль для оформления
-            $prof_id = (int)$request->input('profile_id');
-            if ($prof_id) {
-                $profile = $user->profiles()->whereIdAndUserId($prof_id, $user->id)->first();
-            }
-        }
-        return view('basket.checkout', compact('profiles', 'profile'));
-    }
-
-
 
     /**
      * Добавляет товар с идентификатором $id в корзину
      */
     public function add(Request $request, $id) {
+        $basket_id = $request->cookie('basket_id');
         $quantity = $request->input('quantity') ?? 1;
-        $this->basket->increase($id, $quantity);
-        dd(1);
-        if ( ! $request->ajax()) {
-            // выполняем редирект обратно на ту страницу,
-            // где была нажата кнопка «В корзину»
-            return back();
+        if (empty($basket_id)) {
+            // если корзина еще не существует — создаем объект
+            $basket = Basket::create();
+            // получаем идентификатор, чтобы записать в cookie
+            $basket_id = $basket->id;
+        } else {
+            // корзина уже существует, получаем объект корзины
+            $basket = Basket::findOrFail($basket_id);
+            // обновляем поле `updated_at` таблицы `baskets`
+            $basket->touch();
         }
-        // в случае ajax-запроса возвращаем html-код корзины в правом
-        // верхнем углу, чтобы заменить исходный html-код, потому что
-        // теперь количество позиций будет другим
-        $positions = $this->basket->products()->count();
-        return view('basket.part.basket', compact('positions'));
+        if ($basket->products->contains($id)) {
+            // если такой товар есть в корзине — изменяем кол-во
+            $pivotRow = $basket->products()->where('product_id', $id)->first()->pivot;
+            $quantity = $pivotRow->quantity + $quantity;
+            $pivotRow->update(['quantity' => $quantity]);
+        } else {
+            // если такого товара нет в корзине — добавляем его
+            $basket->products()->attach($id, ['quantity' => $quantity]);
+        }
+        // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
+        return back()->withCookie(cookie('basket_id', $basket_id, 525600));
     }
 
     /**

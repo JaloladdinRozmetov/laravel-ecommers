@@ -25,7 +25,7 @@ class IndexController extends Controller
      */
     public function index() {
         $roots = Category::where('parent_id', 0)->get();
-        $products = Product::paginate(5);
+        $products = Product::query()->latest('id')->get();
         return view('admin.product.index', compact('products', 'roots'));
     }
 }

@@ -30,7 +30,8 @@ class Controller extends BaseController
     public function products($category_id)
     {
         $categories = Category::query()->where('id',$category_id)->with('children','products')->firstOrFail();
-        $products = Product::query()->latest()->get();
+
+        $products = Category::query()->whereIn('id',$categories->getAllChildren($category_id))->with('products')->latest()->get();
         return view('catalog.products',compact('categories','category_id','products'));
     }
 
@@ -40,6 +41,7 @@ class Controller extends BaseController
      */
     public function product($id) {
         $product = Product::query()->where('id',$id)->with('category')->firstOrFail();
+
         return view('catalog.product', compact('product'));
     }
 

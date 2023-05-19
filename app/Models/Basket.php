@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Cookie;
 
 class Basket extends Model {
 
+
+    protected $table = 'baskets';
+
     /**
      * Связь «многие ко многим» таблицы `baskets` с таблицей `products`
      */

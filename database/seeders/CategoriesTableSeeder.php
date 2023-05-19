@@ -14,19 +14,26 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name'          =>  'Main',
-            'parent_id'     =>  0,
-        ],
+        Category::create(
             [
-                'name'          =>  'Catalog',
-                'parent_id'     =>  0,
-            ],
-            [
-                'name'          =>  'category',
+                'name'          =>  'Автомобильные запчасти',
                 'parent_id'     =>  0,
             ]);
-
-       Category::factory()->count(10)->create();
+        Category::create(
+            [
+                'name'          =>  'Автомобильные шины',
+                'parent_id'     =>  1,
+            ]);
+        Category::create(
+            [
+                'name'          =>  'Автомобильные аккумуляторы ',
+                'parent_id'     =>  1,
+            ]);
+        Category::create(
+            [
+                'name'          =>  ' Фары ',
+                'parent_id'     =>  1,
+            ],
+        );
     }
 }

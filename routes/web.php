@@ -23,7 +23,7 @@ Route::get('/product/show/{id}',[App\Http\Controllers\Controller::class,'product
 Route::group([
     'as' => 'basket.', // имя маршрута, например basket.index
     'prefix' => 'basket',// префикс маршрута, например basket/index
-//    'middleware' => 'auth'
+    'middleware' => 'auth'
 ], function () {
     // список всех товаров в корзине
     Route::get('index', [App\Http\Controllers\BasketController::class,'index'])
@@ -32,22 +32,23 @@ Route::group([
     Route::get('success', [App\Http\Controllers\BasketController::class,'success'])
         ->name('success');
     // отправка формы добавления товара в корзину
-    Route::post('add/{id}', [App\Http\Controllers\BasketController::class,'add'])
+    Route::post('add/{id}',[App\Http\Controllers\BasketController::class,'add'])
+        ->where('id', '[0-9]+')
         ->name('add');
     // отправка формы изменения кол-ва отдельного товара в корзине
-    Route::post('plus/{id}', 'BasketController@plus')
+    Route::post('plus/{id}', [App\Http\Controllers\BasketController::class,'plus'])
         ->where('id', '[0-9]+')
         ->name('plus');
     // отправка формы изменения кол-ва отдельного товара в корзине
-    Route::post('minus/{id}', 'BasketController@minus')
+    Route::post('minus/{id}', [App\Http\Controllers\BasketController::class,'minus'])
         ->where('id', '[0-9]+')
         ->name('minus');
     // отправка формы удаления отдельного товара из корзины
-    Route::post('remove/{id}', 'BasketController@remove')
+    Route::post('remove/{id}', [App\Http\Controllers\BasketController::class,'remove'])
         ->where('id', '[0-9]+')
         ->name('remove');
     // отправка формы для удаления всех товаров из корзины
-    Route::post('clear', 'BasketController@clear')
+    Route::post('clear', [App\Http\Controllers\BasketController::class,'clear'])
         ->name('clear');
 });
 //
