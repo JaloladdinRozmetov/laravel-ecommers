@@ -1,4 +1,4 @@
-@extends('layout.site')
+@extends('layout.auth-layout')
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
                 <div class="card-header">Зарегистрировать</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('user.register') }}">
                         @csrf
 
                         <div class="row mb-3">

@@ -51,10 +51,7 @@ Route::group([
     Route::post('clear', [App\Http\Controllers\BasketController::class,'clear'])
         ->name('clear');
 });
-//
-///*
-// * Регистрация, вход в ЛК, восстановление пароля
-// */
+
 Route::name('user.')->prefix('user')->group(function () {
     Auth::routes();
 });
@@ -87,6 +84,5 @@ Route::group([
     Route::put('product/update/{product}', [App\Http\Controllers\Admin\ProductController::class,'update'])->name('product.update');
 });
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
