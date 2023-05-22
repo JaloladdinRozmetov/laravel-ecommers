@@ -8,7 +8,7 @@
                class="btn btn-dark">{{$category->name}}</a>
         @endforeach
     </div>
-    <h1>Каталог товаров</h1>
+    <h1>Каталог товаров Jaloladdin</h1>
 
     <div class="row">
         @foreach ($products as $product)
