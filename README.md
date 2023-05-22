@@ -23,6 +23,10 @@ $ docker exec -it php.ecom composer install
 ### Генерация ключа и запуск миграции для Laravel
 ```bash
 $ docker exec -it php.ecom php artisan key:generate
+```
+
+### Запуск миграции для Laravel
+```bash
 $ docker exec -it php.ecom php artisan migrate
 ```
 
